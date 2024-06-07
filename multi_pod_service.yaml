@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-svc-deb
+spec:
+  type: NodePort
+  selector:
+    card:  debitcard
+  ports:
+    - port: 80  # clusterip's port
+      targetPort: 80 # pod's port
+      nodePort: 32000   # nodeport
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-svc-cred
+spec:
+  type: NodePort
+  selector:
+    card:  creditcard
+  ports:
+    - port: 80  # clusterip's port
+      targetPort: 80 # pod's port
+      nodePort: 32001   # nodeport       

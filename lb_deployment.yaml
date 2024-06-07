@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbal-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: hello
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: my-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        app: hello
+    spec:
+      containers:
+      - name: nginx
+        # Run this image
+        image: httpd
+

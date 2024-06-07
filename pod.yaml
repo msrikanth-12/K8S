@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8poddeb
+  labels:
+    card:  debitcard
+spec:
+  containers:
+  - name: cont1
+    image: httpd
+    ports:
+      - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8podcred
+  labels:
+    card:  creditcard
+spec:
+  containers:
+  - name: cont1
+    image: httpd
+    ports:
+      - containerPort: 80      
